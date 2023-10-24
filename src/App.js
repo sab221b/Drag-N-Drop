@@ -51,7 +51,7 @@ function App() {
 
   return (
     <div className="container">
-      <p>Drag into the rectangle:</p>
+      <p>Drag & Drop in List:</p>
       <div id="container-1">
         <ul className="targetUL-1" id="targetUL" onDragOver={allowDrag}>
           {list.map((item, index) =>
