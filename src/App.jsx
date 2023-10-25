@@ -1,6 +1,4 @@
-import { useEffect } from 'react';
 import './App.css';
-import { useState } from 'react';
 import DraggableContainer from './DraggableContainer/DraggableContainer';
 import CustomComponent from './CustomComponent/CustomComponent';
 
