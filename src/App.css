@@ -2,18 +2,6 @@
   padding: 24px;
 }
 
-.targetUL-1 {
-  width: 250px;
-  padding: 10px;
-  background-color: orange;
-}
-
-.list-item {
-  cursor: grab;
-  list-style: none;
-  margin: 0.2rem 0;
-  padding: 8px;
-  width: 50px;
-  border-radius: 5px;
-  background: wheat;
+.m-0 {
+  margin: 0;
 }

@@ -1,15 +1,16 @@
 import { useEffect } from 'react';
-import './App.css';
+import './DraggableContainer.css';
 import { useState } from 'react';
 
-function App() {
-  const [list, setList] = useState([
-    { name: 'Book', id: '252edg' },
-    { name: 'Pen', id: '651edg' },
-    { name: 'Note', id: '466edg' },
-    { name: 'Bag', id: '459edg' },
-    { name: 'Pencil', id: '952edg' }]);
+function DraggableContainer(props) {
 
+  const childrenComponents = props.children.map((item, index) => {
+    return {
+      ...item,
+      id: String(new Date().getTime() + index)
+    }
+  })
+  const [list, setList] = useState(childrenComponents);
   const [dragItem, setDragItem] = useState({})
   const [dropItem, setDropItem] = useState({})
 
@@ -50,27 +51,21 @@ function App() {
   }
 
   return (
-    <div className="container">
-      <p>Drag & Drop in List:</p>
-      <div id="container-1">
-        <ul className="targetUL-1" id="targetUL" onDragOver={allowDrag}>
-          {list.map((item, index) =>
-            <li
-              key={item.id}
-              onDragStart={() => onDrag(item, index)}
-              onDrop={() => onDrop(item, index)}
-              className="list-item"
-              id={item.id}
-              draggable={true}
-            >
-              {item.name}
-            </li>
-          )}
-        </ul>
-      </div>
-      <br />
+    <div id="container-1">
+      <ul className="targetUL-1" id="targetUL" onDragOver={allowDrag}>
+        {list.map((item, index) =>
+          <li
+            key={item.id}
+            onDragStart={() => onDrag(item, index)}
+            onDrop={() => onDrop(item, index)}
+            className="list-item"
+            id={item.id}
+            draggable={true}
+          >{item}</li>
+        )}
+      </ul>
     </div>
   );
 }
 
-export default App;
+export default DraggableContainer;
