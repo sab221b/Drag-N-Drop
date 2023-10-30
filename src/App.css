@@ -2,18 +2,6 @@
   padding: 24px;
 }
 
-.targetUL-1 {
-  width: 250px;
-  height: 200px;
-  padding: 10px;
-  border: 1px solid orange;
-  background-color: orange;
-}
-
-.list-item {
-  list-style: none;
-  padding: 10px;
-  height: 20px;
-  width: 50px;
-  background: wheat;
+.m-0 {
+  margin: 0;
 }
