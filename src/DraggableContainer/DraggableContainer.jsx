@@ -20,20 +20,7 @@ function DraggableContainer(props) {
 
   useEffect(() => {
     if (dragItem.item && dropItem.item) {
-      if (dragItem.index === dropItem.index) {
-        return;
-      } else {
-        if (Math.abs(dragItem.index - dropItem.index) === 1) {
-          const temp1 = list[dragItem.index];
-          list[dragItem.index] = list[dropItem.index]
-          list[dropItem.index] = temp1;
-        } else {
-          const temp = list.splice(dragItem.index, 1);
-          list.splice(dropItem.index, 0, ...temp);
-          setList([...list])
-        }
-        resetDragDrop();
-      }
+      validateConditions();
     }
   }, [dragItem, dropItem])
 
@@ -50,20 +37,41 @@ function DraggableContainer(props) {
     setDropItem({ item, index });
   }
 
+  const validateConditions = () => {
+    if (dragItem.index !== dropItem.index) {
+      if (Math.abs(dragItem.index - dropItem.index) === 1) {
+        swapItems();
+      } else {
+        dragNdrop()
+      }
+      resetDragDrop();
+    }
+  }
+
+  const swapItems = () => {
+    const temp = list[dragItem.index];
+    list[dragItem.index] = list[dropItem.index]
+    list[dropItem.index] = temp;
+  }
+
+  const dragNdrop = () => {
+    const temp = list.splice(dragItem.index, 1);
+    list.splice(dropItem.index, 0, ...temp);
+    setList([...list])
+  }
+
   return (
-    <div id="container-1">
-      <ul className="targetUL-1" id="targetUL" onDragOver={allowDrag}>
-        {list.map((item, index) =>
-          <li
-            key={item.id}
-            onDragStart={() => onDrag(item, index)}
-            onDrop={() => onDrop(item, index)}
-            className="list-item"
-            id={item.id}
-            draggable={true}
-          >{item}</li>
-        )}
-      </ul>
+    <div className="listWrapper" onDragOver={allowDrag}>
+      {list.map((item, index) =>
+        <div
+          key={item.id}
+          onDragStart={() => onDrag(item, index)}
+          onDrop={() => onDrop(item, index)}
+          className="list-item"
+          id={item.id}
+          draggable={true}
+        >{item}</div>
+      )}
     </div>
   );
 }
