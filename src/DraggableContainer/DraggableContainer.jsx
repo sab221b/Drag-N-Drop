@@ -19,8 +19,8 @@ function DraggableContainer(props) {
   }
 
   useEffect(() => {
-    if (dragItem.item && dropItem.item) {
-      validateConditions();
+    if (dragItem.item && dropItem.item && dragItem.index !== dropItem.index) {
+      dragNdrop();
     }
   }, [dragItem, dropItem])
 
@@ -37,27 +37,11 @@ function DraggableContainer(props) {
     setDropItem({ item, index });
   }
 
-  const validateConditions = () => {
-    if (dragItem.index !== dropItem.index) {
-      if (Math.abs(dragItem.index - dropItem.index) === 1) {
-        swapItems();
-      } else {
-        dragNdrop()
-      }
-      resetDragDrop();
-    }
-  }
-
-  const swapItems = () => {
-    const temp = list[dragItem.index];
-    list[dragItem.index] = list[dropItem.index]
-    list[dropItem.index] = temp;
-  }
-
   const dragNdrop = () => {
     const temp = list.splice(dragItem.index, 1);
     list.splice(dropItem.index, 0, ...temp);
     setList([...list])
+    resetDragDrop();
   }
 
   return (
