@@ -1,8 +1,8 @@
 import './App.css';
-import DraggableContainer from './DraggableContainer/DraggableContainer';
 import CustomComponent from './CustomComponent/CustomComponent';
+import DraggableContainer from './DraggableContainer/DraggableContainer';
 
-function App() {
+const App = () => {
   return (
     <div className="container">
       <p>Drag & Drop Elements</p>

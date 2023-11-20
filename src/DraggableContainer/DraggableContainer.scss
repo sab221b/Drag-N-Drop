@@ -1,0 +1,27 @@
+.listWrapper {
+  width: 500px;
+  padding: 10px;
+  background-color: wheat;
+}
+
+.draggable {
+  list-style: none;
+  list-style-type: none;
+  margin: 0.5rem 0;
+  padding: 8px;
+  border-radius: 5px;
+  background: white;
+  will-change: transform;
+  cursor: grab;
+  transition: all 200ms;
+  user-select: none;
+  position: relative;
+  * {
+    pointer-events: none;
+  }
+}
+
+.dragover {
+  background: #EAE6FF;
+  transform: scale(1.01, 1.1);
+}
